@@ -1,0 +1,10 @@
+server:
+  port: 8180
+spring:
+  mvc:
+    view:
+      suffix:
+        - .jsp
+        - .ftl
+  freemarker:
+    request-context-attribute: rc

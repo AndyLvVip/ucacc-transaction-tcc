@@ -1,6 +1,6 @@
-[#macro paging pageNum pageSize pages ctxPath]
+[#macro paging pageNum pageSize pages]
     [#if (pageNum>1)]
-    <li><a aria-label="Previous" href="${ctxPath}&pagenum=${pageNum-1}"><span aria-hidden="true">«</span></a></li>
+    <li><a aria-label="Previous" href="${rc.getContextPath()}&pagenum=${pageNum-1}"><span aria-hidden="true">«</span></a></li>
     [/#if]
 
 
@@ -24,7 +24,7 @@
         [#if pages gt 1]
             [#if (index >= 1)&&(index <= pages)]
             <li [#if index == pageNum]
-                    class="active"[/#if]><a href="${ctxPath}&pagenum=${index}">${index}</a></li>
+                    class="active"[/#if]><a href="${rc.getContextPath()}&pagenum=${index}">${index}</a></li>
             [/#if]
         [/#if]
     [/#list]
@@ -33,13 +33,13 @@
 [#--&hellip;--]
 [#--[/#if]--]
 [#--[#if (end < pages - 1)]--]
-[#--<li><a href="${ctxPath}/pagenum/${pages-1}">${pages-1}</a></li>--]
+[#--<li><a href="${rc.getContextPath()}/pagenum/${pages-1}">${pages-1}</a></li>--]
 [#--[/#if]--]
 [#--[#if (end < pages)]--]
-[#--<li><a href="${ctxPath}/pagenum/${pages}">${pages}</a></li>--]
+[#--<li><a href="${rc.getContextPath()}/pagenum/${pages}">${pages}</a></li>--]
 [#--[/#if]--]
 
     [#if (pages>pageNum)]
-    <li><a aria-label="Next" href="${ctxPath}&pagenum=${pageNum+1}"><span aria-hidden="true">»</span></a></li>
+    <li><a aria-label="Next" href="${rc.getContextPath()}&pagenum=${pageNum+1}"><span aria-hidden="true">»</span></a></li>
     [/#if]
 [/#macro]
