@@ -1,10 +1,21 @@
 server:
   port: 8180
 spring:
-  mvc:
-    view:
-      suffix:
-        - .jsp
-        - .ftl
   freemarker:
     request-context-attribute: rc
+tcc:
+  jdbc:
+    url: jdbc:mysql://127.0.0.1:3306/TCC?useUnicode=true&characterEncoding=UTF-8
+    username: andy
+    password: password
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    database: 0
+    timeout: 1000
+    pool:
+      maxTotal: 300
+      maxIdle: 100
+      minIdle: 10
+      maxWaitMillis: 3000

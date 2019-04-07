@@ -39,13 +39,13 @@ public class TransactionController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView manager(@RequestParam(value = "domain", required = false) String domain,
-                                @RequestParam(value = "pagenum", required = false) Integer pageNum,
-                                @RequestParam(value = "isdelete", required = false, defaultValue = "0") Integer isDelete) {
+                                @RequestParam(value = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                @RequestParam(value = "isDelete", required = false, defaultValue = "0") Integer isDelete) {
 
         logger.info("query with domain:{},pageNum:{}", domain, pageNum);
 
         if (StringUtils.isEmpty(domain)) {
-            return manager();
+            return manager(isDelete, pageNum);
         }
 
         if (pageNum == null) {
@@ -180,12 +180,14 @@ public class TransactionController {
         return new CommonResponse<Void>();
     }
 
-    public ModelAndView manager() {
+    public ModelAndView manager(Integer isDelete, Integer pageNum) {
 
         logger.info("query without any parameter");
 
         ModelAndView modelAndView = new ModelAndView("manager");
         modelAndView.addObject("domains", daoRepository.getDomains());
+        modelAndView.addObject("isDelete", isDelete);
+        modelAndView.addObject("pageNum", pageNum);
         return modelAndView;
     }
 

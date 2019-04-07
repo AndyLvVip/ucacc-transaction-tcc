@@ -16,7 +16,7 @@
 
 <body>
 
-[#import "paging.ftl" as p]
+[#--[#import "paging.ftl" as p]--]
 <div class="container-fluid">
     <div class="page-header">
         <h3>TCC-TRANSACTION管理后台 1.0</h3>
