@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ucacc.demo.tcc.domain.Product;
@@ -19,12 +20,14 @@ public class ProductServiceTest {
     ProductService productService;
 
     @Test
+    @Rollback(false)
     public void save() {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
         product.setStatus("NORMAL");
         product.setStorage(10);
         productService.save(product);
+        System.out.println(product);
     }
 
     @Test
@@ -35,6 +38,6 @@ public class ProductServiceTest {
         product.setStorage(10);
         productService.save(product);
 
-        productService.tryBuy(product.getId());
+        productService.tryBuy(null, product.getId());
     }
 }

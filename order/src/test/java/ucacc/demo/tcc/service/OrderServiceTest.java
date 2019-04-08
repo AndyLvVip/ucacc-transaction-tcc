@@ -44,7 +44,7 @@ public class OrderServiceTest {
     @Test
     @Rollback(false)
     public void tryBook() {
-        String productId = UUID.randomUUID().toString();
+        String productId = "1080167f-ed64-420f-89a9-60e989ba05a0";
         orderService.tryBook(productId);
     }
 }

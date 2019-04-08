@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: default
   jpa:
     generate-ddl: false
     show-sql: true
@@ -13,7 +13,7 @@ server:
 tcc:
   jdbc:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.63.195:3306/TCC?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/TCC?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: andy
     password: password
 

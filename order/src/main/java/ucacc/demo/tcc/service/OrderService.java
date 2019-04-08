@@ -15,7 +15,12 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public OrderService(OrderRepository orderRepository) {
+    private final ProductService productService;
+
+    public OrderService(OrderRepository orderRepository
+                        , ProductService productService
+    ) {
+        this.productService = productService;
         this.orderRepository = orderRepository;
     }
 
@@ -33,6 +38,7 @@ public class OrderService {
         order.setProductId(productId);
         order.setStatus("DRAFT");
         save(order);
+        productService.buyProduct(null, productId);
     }
 
     @Transactional

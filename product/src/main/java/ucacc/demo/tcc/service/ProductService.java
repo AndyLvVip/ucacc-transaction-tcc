@@ -2,6 +2,7 @@ package ucacc.demo.tcc.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mengyun.tcctransaction.api.Compensable;
+import org.mengyun.tcctransaction.api.TransactionContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ucacc.demo.tcc.domain.Product;
@@ -24,7 +25,7 @@ public class ProductService {
 
     @Compensable(confirmMethod = "confirmBuy", cancelMethod = "cancelBuy")
     @Transactional
-    public void tryBuy(String productId) {
+    public void tryBuy(TransactionContext transactionContext, String productId) {
         log.info("try buy product: {}" + productId);
         Product product = productRepository.findById(productId).get();
 
@@ -34,7 +35,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void confirmBuy(String productId) {
+    public void confirmBuy(TransactionContext transactionContext, String productId) {
         log.info("confirm buy product: {}" + productId);
         Product product = productRepository.findById(productId).get();
         if("BUYING".equals(product.getStatus())) {
@@ -44,7 +45,7 @@ public class ProductService {
     }
 
     @Transactional
-    public void cancel(String productId) {
+    public void cancel(TransactionContext transactionContext, String productId) {
         log.info("cancel buy product: {}" + productId);
         Product product = productRepository.findById(productId).get();
         if("BUYING".equals(product.getStatus())) {

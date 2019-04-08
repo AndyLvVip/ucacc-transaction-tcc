@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: default
   jpa:
     generate-ddl: false
     show-sql: true

@@ -81,8 +81,8 @@ public class TccAutoConfiguration {
     public SpringJdbcTransactionRepository transactionRepository(TccConfig config, KryoPoolSerializer objectSerializer) {
         SpringJdbcTransactionRepository transactionRepository = new SpringJdbcTransactionRepository();
         transactionRepository.setDataSource(tccDataSource(config));
-        transactionRepository.setDomain("ORDER");
-        transactionRepository.setTbSuffix("_ORDER");
+        transactionRepository.setDomain("PRODUCT");
+        transactionRepository.setTbSuffix("_PRODUCT");
         transactionRepository.setSerializer(objectSerializer);
         return transactionRepository;
     }
