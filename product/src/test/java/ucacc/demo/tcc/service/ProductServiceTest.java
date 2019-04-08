@@ -22,7 +22,19 @@ public class ProductServiceTest {
     public void save() {
         Product product = new Product();
         product.setId(UUID.randomUUID().toString());
-        product.setStatus("ORDERING");
+        product.setStatus("NORMAL");
+        product.setStorage(10);
         productService.save(product);
+    }
+
+    @Test
+    public void tryBuy() {
+        Product product = new Product();
+        product.setId(UUID.randomUUID().toString());
+        product.setStatus("NORMAL");
+        product.setStorage(10);
+        productService.save(product);
+
+        productService.tryBuy(product.getId());
     }
 }

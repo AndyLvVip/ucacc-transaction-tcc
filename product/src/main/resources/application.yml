@@ -10,6 +10,12 @@ spring:
     password: password
 server:
   port: 7081
+tcc:
+  jdbc:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.63.195:3306/TCC?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: andy
+    password: password
 
 ---
 spring:
