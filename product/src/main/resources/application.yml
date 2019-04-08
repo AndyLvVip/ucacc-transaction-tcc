@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   jpa:
     generate-ddl: false
     show-sql: true
@@ -8,3 +10,17 @@ spring:
     password: password
 server:
   port: 7081
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://192.168.63.195:3306/tcc_product
+    username: uca
+    password: password
+
+tcc:
+  jdbc:
+    url: jdbc:mysql://192.168.63.195:3306/TCC?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: uca
+    password: password

@@ -12,7 +12,7 @@ allprojects {
     sourceCompatibility = 1.8
     group 'ucacc'
 
-    ext['tccTransactionVersion']='1.2.4.24'
+    ext['tccTransactionVersion']='1.2.4.24.2'
     repositories {
         maven { url 'http://artifactory.ucacc.net:8081/artifactory/maven-center/' }
         maven { url 'http://artifactory.ucacc.net:8081/artifactory/spring-io-milestone/' }
@@ -28,6 +28,7 @@ allprojects {
             implementation "com.google.guava:guava:27.1-jre"
             implementation 'com.esotericsoftware:kryo-shaded:4.0.0'
         }
+        implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'com.mchange:c3p0:0.9.2.1'
         implementation "com.google.guava:guava"
         implementation 'com.esotericsoftware:kryo-shaded'
@@ -36,6 +37,10 @@ allprojects {
         implementation "org.mengyun:tcc-transaction-core"
         implementation "org.springframework.boot:spring-boot-starter-aop"
         implementation 'org.mengyun:tcc-transaction-spring'
+        implementation "org.springframework:spring-context-support"
+        implementation ('org.quartz-scheduler:quartz:2.3.1') {
+            exclude group: 'c3p0', module: 'c3p0'
+        }
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
 
@@ -48,15 +53,12 @@ version '1.0-SNAPSHOT'
 
 ext['springFrameworkVersion'] = '5.1.5.RELEASE'
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
     implementation 'javax.servlet:jstl'
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 
     implementation platform("io.protostuff:protostuff-bom:1.6.0")
-    implementation ('org.quartz-scheduler:quartz:2.0.2') {
-        exclude group: 'c3p0', module: 'c3p0'
-    }
+
     implementation 'commons-dbcp:commons-dbcp:1.4'
     implementation 'com.alibaba:fastjson:1.2.29'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.5.0'
@@ -65,7 +67,6 @@ dependencies {
     implementation 'org.mybatis:mybatis-spring:1.3.1'
     implementation 'org.mybatis:mybatis:3.3.1'
     implementation "org.springframework:spring-webmvc:${springFrameworkVersion}"
-    implementation "org.springframework:spring-context-support:${springFrameworkVersion}"
     implementation "org.springframework:spring-beans:${springFrameworkVersion}"
     implementation "org.springframework:spring-tx:${springFrameworkVersion}"
     implementation "org.springframework:spring-context:${springFrameworkVersion}"

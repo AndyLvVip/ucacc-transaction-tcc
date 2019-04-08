@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   jpa:
     generate-ddl: false
     show-sql: true
@@ -15,10 +17,18 @@ tcc:
     url: jdbc:mysql://127.0.0.1:3306/TCC?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: andy
     password: password
-    c3p0:
-      initial-pool-size: 10
-      min-pool-size: 10
-      max-pool-size: 30
-      acquire-increment: 3
-      max-idle-time: 1800
-      checkout-timeout: 30000
+
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://192.168.63.195:3306/tcc_order
+    username: uca
+    password: password
+
+tcc:
+  jdbc:
+    url: jdbc:mysql://192.168.63.195:3306/TCC?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: uca
+    password: password
